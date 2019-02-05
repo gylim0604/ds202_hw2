@@ -88,7 +88,8 @@ Most exercises are from the ggplot2 book section 2.2.1. You might find it helpfu
 ```
 3. Create a scatterplot of `hwy` and `cty` and describe the relationship. Why are there so few points visible?
 ```{r}
-  plot(mpg$hwy, mpg$cty)
+  plot(mpg$hwy, mpg$cty,pch = c(1,2),col = c("red","blue"))
+  legend("topleft",legend = c("hwy","cty"),pch = c(1,2),col = c("red","blue"))
 ```
 </br>
 4. Are cars in 2008 more fuel efficient than cars in 1999? Use graphs *and* summary statistics to answer this question. 
@@ -96,9 +97,13 @@ Most exercises are from the ggplot2 book section 2.2.1. You might find it helpfu
   d2008 <-subset(mpg,mpg$year ==2008)
   d1999 <-subset(mpg,mpg$year ==1999)
   scatter <- c(d2008,d1999)
-  plot(d2008$hwy,d1999$hwy,pch =15,col =c("red","blue"))
-  plot(d2008$cty,d1999$cty,pch =15,col =c("red","blue"))
+  plot(d2008$hwy,d1999$hwy,pch =c(16,17),col =c("red","blue"),main="Highway miles per gallon",xlab = "2008",ylab = "1999")
+  legend("topleft",legend = c("2008","1999"),col = c("red","blue"),pch = c(16,17))
+  plot(d2008$cty,d1999$cty,pch =c(16,17),col =c("red","blue"),main = "City miles per gallon",xlab = "2008",ylab ="1999")
+  legend("topleft",legend = c("2008","1999"),col = c("red","blue"),pch = c(16,17))
   boxplot(c(d2008$hwy, d2008$cty),c(d1999$hwy,d1999$hwy),main ="Car Milage Data",xlab = "Year", ylab = "Miles per gallon",col = c("red","blue")) 
+  legend("topleft",legend = c("2008","1999"),col = c("red","blue"),pch= 15)
+#looking at the the two scatterplots, we can see that cars in 1999 are more fuel efficient than cars in 2008 in the city miles per gallon. This is also backed by the  boxplot of cars milage data.
   
 ```
 </br>
